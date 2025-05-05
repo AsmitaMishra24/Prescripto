@@ -13,11 +13,20 @@ const Contact = () => {
         <img className='w-full md:max-w-[360px]' src={assets.contact_image} alt="" />
         <div className='flex flex-col justify-center items-start gap-6'>
           <p className=' font-semibold text-lg text-gray-600'>OUR OFFICE</p>
-          <p className=' text-gray-500'>Survey No. 140 - 141/1 <br /> Indian Institute of Information Technology, Nagpur (IIITN)</p>
-          <p className=' text-gray-500'>Tel: (91) 8468938745 <br /> Email: vasuparashar18@gmail.com</p>
+          <p className=' text-gray-500'>Survey No. 140 - 141/1 <br />M.P Nagar, Bhopal, Madhya Pradesh</p>
+          <p className=' text-gray-500'>Tel: (+91)-1234567892 <br /> Email: prescirpto@gmail.com</p>
           <p className=' font-semibold text-lg text-gray-600'>CAREERS AT PRESCRIPTO</p>
           <p className=' text-gray-500'>Learn more about our teams and job openings.</p>
-          <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore Jobs</button>
+          <a
+            href="https://github.com/AsmitaMishra24"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500">
+              Explore Jobs
+            </button>
+          </a>
+
         </div>
       </div>
 

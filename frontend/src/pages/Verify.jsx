@@ -5,8 +5,7 @@ import { AppContext } from '../context/AppContext';
 import { toast } from 'react-toastify';
 
 const Verify = () => {
-
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
 
     const success = searchParams.get("success")
     const appointmentId = searchParams.get("appointmentId")
@@ -17,10 +16,12 @@ const Verify = () => {
 
     // Function to verify stripe payment
     const verifyStripe = async () => {
-
         try {
-
-            const { data } = await axios.post(backendUrl + "/api/user/verifyStripe", { success, appointmentId }, { headers: { token } })
+            const { data } = await axios.post(
+                `${backendUrl}/api/user/verifyStripe`,
+                { success, appointmentId },
+                { headers: { Authorization: `Bearer ${token}` } } // Fix: Add token in Authorization header
+            )
 
             if (data.success) {
                 toast.success(data.message)
@@ -29,19 +30,18 @@ const Verify = () => {
             }
 
             navigate("/my-appointments")
-
         } catch (error) {
-            toast.error(error.message)
+            toast.error(error.message || "Something went wrong!")
             console.log(error)
         }
-
     }
 
     useEffect(() => {
-        if (token, appointmentId, success) {
+        // Fix: Check if all required parameters are present before calling the function
+        if (token && appointmentId && success) {
             verifyStripe()
         }
-    }, [token])
+    }, [token, appointmentId, success]) // Fix: Add proper dependencies to trigger re-run of useEffect
 
     return (
         <div className='min-h-[60vh] flex items-center justify-center'>
@@ -50,4 +50,4 @@ const Verify = () => {
     )
 }
 
-export default Verify
+export default Verify;
